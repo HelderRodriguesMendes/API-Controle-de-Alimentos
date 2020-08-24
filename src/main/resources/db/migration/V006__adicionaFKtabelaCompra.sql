@@ -1,0 +1,1 @@
+alter table compra add constraint SUPERMECADO_ID foreign key (id) references supermecado(id);

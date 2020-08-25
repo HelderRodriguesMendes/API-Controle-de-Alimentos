@@ -31,23 +31,26 @@ public class Compra implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "SUPERMECADO_ID")
-	private Supermacado supermacado;
+	private Supermercado supermacado;
 	
 	@OneToMany(mappedBy = "compra")
 	private List<Produto> produtos;
 	
 	@Column(name = "VALORCOMPRA")
 	private Integer valorCompra;
+	
+	private int inativo;
 		
 	public Compra() {
 		
 	}
 
-	public Compra(Long id, LocalDate dataCompra, Supermacado supermacado, Integer valorCompra) {
+	public Compra(Long id, LocalDate dataCompra, Supermercado supermacado, Integer valorCompra, int inativo) {
 		super();
 		this.id = id;
 		this.dataCompra = dataCompra;
 		this.supermacado = supermacado;
 		this.valorCompra = valorCompra;
+		this.inativo = inativo;
 	}	
 }

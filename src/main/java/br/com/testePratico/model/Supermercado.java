@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 
 @Entity
 @Data
-public class Supermacado implements Serializable {
+public class Supermercado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,18 +35,22 @@ public class Supermacado implements Serializable {
 	@Column(name = "ENDERECO")
 	private String endereco;
 	
+	private int inativo;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "supermacado")
 	private List<Compra> compras;
 	
-	public Supermacado() {
+	public Supermercado() {
 		
 	}
 
-	public Supermacado(Long id, String nome, String telefone, String endereco) {
+	public Supermercado(Long id, String nome, String telefone, String endereco, int inativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco = endereco;
+		this.inativo = inativo;
 	}	
 }

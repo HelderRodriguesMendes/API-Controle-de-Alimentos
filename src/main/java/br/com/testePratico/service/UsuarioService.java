@@ -23,14 +23,11 @@ public class UsuarioService {
 		
 		boolean ok = true;
 		
-		if(usuario.getLogin() != login && usuario.getSenha() != senha) {
+		if(!usuario.getLogin().equals(login) && !usuario.getSenha().equals(senha)) {
+				
 			ok = false;
 		}
 		
 		return ok;
 	}
-	
-	
-	
-
 }

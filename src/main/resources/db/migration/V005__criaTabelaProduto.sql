@@ -7,5 +7,6 @@ create table produto(
     DATAVALIDADE date not null,
     STATUSCONSUMO bigint not null,
     COMPRA_ID bigint,
+    inativo int,
     primary key(id)
 );

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.testePratico.model.Produto;
-import br.com.testePratico.model.Supermacado;
+import br.com.testePratico.model.Supermercado;
 import lombok.Data;
 
 @Data
@@ -21,21 +21,24 @@ public class CompraDTO {
 	private LocalDate dataCompra;
 
 	@NotEmpty(message = "Preenchimento obrigatório do campo SUPERMECADO")
-	private Supermacado supermacado;
+	private Supermercado supermacado;
 
 	private List<Produto> produtos;
 
 	private Integer valorCompra;
+	
+	private int inativo;
 
 	public CompraDTO() {
 
 	}
 
-	public CompraDTO(Long id, LocalDate dataCompra, Supermacado supermacado, Integer valorCompra) {
+	public CompraDTO(Long id, LocalDate dataCompra, Supermercado supermacado, Integer valorCompra, int inativo) {
 		super();
 		this.id = id;
 		this.dataCompra = dataCompra;
 		this.supermacado = supermacado;
 		this.valorCompra = valorCompra;
+		this.inativo = inativo;
 	}
 }

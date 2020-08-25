@@ -10,7 +10,7 @@ import br.com.testePratico.model.Compra;
 import lombok.Data;
 
 @Data
-public class SupermecadoDTO {
+public class SupermercadoDTO {
 
 	private Long id;
 
@@ -25,16 +25,19 @@ public class SupermecadoDTO {
 	private String endereco;
 
 	private List<Compra> compras;
+	
+	private int inativo;
 
-	public SupermecadoDTO() {
+	public SupermercadoDTO() {
 
 	}
 
-	public SupermecadoDTO(Long id, String nome, String telefone, String endereco) {
+	public SupermercadoDTO(Long id, String nome, String telefone, String endereco, int inativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco = endereco;
+		this.inativo = inativo;
 	}
 }

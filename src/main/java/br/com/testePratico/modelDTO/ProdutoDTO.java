@@ -38,13 +38,15 @@ public class ProdutoDTO {
 	private int statusConsumo;
 
 	private Compra compra;
+	
+	private int inativo;
 
 	public ProdutoDTO() {
 
 	}
 
 	public ProdutoDTO(Long id, String tipo, String nome, String marca, Integer valor, LocalDate dataValidade,
-			int statusConsumo, Compra compra) {
+			int statusConsumo, Compra compra, int inativo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -54,5 +56,6 @@ public class ProdutoDTO {
 		this.dataValidade = dataValidade;
 		this.statusConsumo = statusConsumo;
 		this.compra = compra;
+		this.inativo = inativo;
 	}
 }

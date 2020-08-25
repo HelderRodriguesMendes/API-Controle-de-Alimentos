@@ -46,12 +46,14 @@ public class Produto implements Serializable {
 	@JoinColumn(name = "COMPRA_ID")
 	private Compra compra;
 	
+	private int inativo;
+	
 	public Produto() {
 		
 	}
 	
 	public Produto(Long id, String tipo, String nome, String marca, Integer valor, LocalDate dataValidade,
-			Long statusConsumo, Compra compra) {
+			Long statusConsumo, Compra compra, int inativo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -61,6 +63,7 @@ public class Produto implements Serializable {
 		this.dataValidade = dataValidade;
 		this.statusConsumo = statusConsumo;
 		this.compra = compra;
+		this.inativo = inativo;
 	}
 
 }

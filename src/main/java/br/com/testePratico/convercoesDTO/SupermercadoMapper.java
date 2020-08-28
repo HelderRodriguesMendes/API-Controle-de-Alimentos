@@ -1,4 +1,4 @@
-package br.com.testePratico.convercoesDTO;
+/*package br.com.testePratico.convercoesDTO;
 
 import org.modelmapper.ModelMapper;
 
@@ -16,4 +16,4 @@ public class SupermercadoMapper {
 	public Supermercado toEntity(SupermercadoDTO supermecadoDTO) {
 		return mapper.map(supermecadoDTO, Supermercado.class);
 	}
-}
+}*/

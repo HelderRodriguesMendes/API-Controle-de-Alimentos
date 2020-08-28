@@ -1,4 +1,4 @@
-package br.com.testePratico.controller;
+/*package br.com.testePratico.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -45,6 +45,7 @@ public class SupermercadoController {
 	@GetMapping("/pesquisarNome")
 	public ResponseEntity<List<Supermercado>> consultarNome(@RequestParam String nome){
 		List<Supermercado> supermercado = supermercadoServise.listarNome(nome);
+	
 		return ResponseEntity.ok().body(supermercado);
 	}
 	
@@ -61,4 +62,4 @@ public class SupermercadoController {
 		List<Supermercado> supermercados = supermercadoServise.desabilitar(id);
 		return (supermercados);
 	}
-}
+}*/

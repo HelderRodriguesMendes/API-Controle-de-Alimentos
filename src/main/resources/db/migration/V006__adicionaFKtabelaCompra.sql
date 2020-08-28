@@ -1,1 +1,0 @@
-alter table compra add constraint SUPERMERCADO_ID foreign key (id) references supermercado(id);

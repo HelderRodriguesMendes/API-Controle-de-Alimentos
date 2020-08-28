@@ -1,4 +1,4 @@
-package br.com.testePratico.service;
+/*package br.com.testePratico.service;
 
 import java.util.List;
 
@@ -39,9 +39,11 @@ public class SupermercadoServise {
 	
 	public List<Supermercado> listarNome(String nome) {
 		List<Supermercado> supermercado = supermercadoRepository.findByNome(nome);
-		if(supermercado == null) {
+		
+		if(supermercado.isEmpty()) {
 			throw new RegistroNaoEncontradoException("Supermercado não encontrado");
 		}
+		
 		return supermercado;
 	}
 
@@ -52,4 +54,4 @@ public class SupermercadoServise {
 		return supermercados;
 	}
 
-}
+}*/

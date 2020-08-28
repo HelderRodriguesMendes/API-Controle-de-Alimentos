@@ -1,4 +1,4 @@
-package br.com.testePratico.repository;
+/*package br.com.testePratico.repository;
 
 import java.util.List;
 
@@ -22,4 +22,4 @@ public interface SupermecadoRepository extends  JpaRepository<Supermercado, Long
 	@Query(value = "select * from supermercado where inativo = '0' and nome like %?1%", nativeQuery = true)
 	List<Supermercado> findByNome(String nome);
 	
-}
+}*/

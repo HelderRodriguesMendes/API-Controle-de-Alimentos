@@ -1,6 +1,7 @@
-package br.com.testePratico.model;
+/*package br.com.testePratico.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,13 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of = { "id" })
 public class Supermercado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,9 +43,10 @@ public class Supermercado implements Serializable {
 	
 	private int inativo;
 	
-	@JsonIgnore
+	
+	@JsonBackReference
 	@OneToMany(mappedBy = "supermacado")
-	private List<Compra> compras;
+	private List<Compra> compras = new ArrayList<>();
 	
 	public Supermercado() {
 		
@@ -53,4 +60,4 @@ public class Supermercado implements Serializable {
 		this.endereco = endereco;
 		this.inativo = inativo;
 	}	
-}
+}*/

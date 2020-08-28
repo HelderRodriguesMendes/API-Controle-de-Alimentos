@@ -22,23 +22,13 @@ public class CompraController {
 
 	@Autowired
 	CompraService compraService;
-	
-	
+
 	private static final String API = "/compra";
 	
 	@PostMapping()
-	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException{
-		if(compraDTO.getProdutosDTO().isEmpty()) {
-			System.out.println("NULO");
-		}else {
-			System.out.println("NÃO NULO");
-		}
+	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException{		
 		Compra compra = compraService.salvar(compraDTO);
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
-	
-	
-	
-	
-	
+
 }

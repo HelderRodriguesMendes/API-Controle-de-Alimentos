@@ -1,1 +1,1 @@
-alter table produto add constraint COMPRA_ID foreign key (idProduto) references compra(idCompra);
+alter table produto add constraint COMPRAID foreign key (id) references compra(id);

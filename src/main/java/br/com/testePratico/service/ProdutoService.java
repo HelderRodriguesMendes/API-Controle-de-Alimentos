@@ -18,14 +18,13 @@ public class ProdutoService {
 	ProdutoRepository produtoRepository;
 	
 	ProdutoMapper produtoMapper = new ProdutoMapper();
-	
-	
-	
-	public Produto salvar(@Valid ProdutoDTO produtoDTO) {
-		Produto produto = produtoMapper.toEntity(produtoDTO);
-		return produto = produtoRepository.save(produto);
+
+	public void salvar(@Valid ProdutoDTO produtoDTO, Compra compra) {
+		System.out.println("COMPRA " + compra.getId());
+		Produto p = produtoMapper.toEntity(produtoDTO);
+		p.setCompra(compra);
+		p = produtoRepository.save(p);
+		
 	}
-	public void salvarLista( Compra compra) {
-		 produtoRepository.saveAll(compra.getProdutos());
-	}
+	
 }

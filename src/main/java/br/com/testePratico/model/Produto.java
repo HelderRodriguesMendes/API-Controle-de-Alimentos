@@ -10,8 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
+@Table(name = "produto")
 public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,29 +42,14 @@ public class Produto implements Serializable {
 	@Column(name = "STATUSCONSUMO", nullable = false)
 	private Long statusConsumo;
 	
+	@JsonBackReference
 	@ManyToOne()
-	@JoinColumn(name = "COMPRA_ID")
+	@JoinColumn(name = "COMPRAID")
 	private Compra compra;
 
 	public Produto() {
 		
 	}
-	
-	
-	public Produto(Long id, String tipo, String nome, String marca, Integer valor, LocalDate dataValidade,
-			Long statusConsumo, Compra compra) {
-		super();
-		this.id = id;
-		this.tipo = tipo;
-		this.nome = nome;
-		this.marca = marca;
-		this.valor = valor;
-		this.dataValidade = dataValidade;
-		this.statusConsumo = statusConsumo;
-		this.compra = compra;
-	}
-
-
 
 	public Long getId() {
 		return id;

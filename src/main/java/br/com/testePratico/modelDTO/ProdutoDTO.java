@@ -2,19 +2,12 @@ package br.com.testePratico.modelDTO;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import br.com.testePratico.model.Compra;
-import lombok.Data;
 
 public class ProdutoDTO {
 

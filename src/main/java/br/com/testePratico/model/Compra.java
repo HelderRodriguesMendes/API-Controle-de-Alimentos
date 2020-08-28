@@ -4,15 +4,18 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@Table(name = "compra")
 public class Compra implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,27 +39,14 @@ public class Compra implements Serializable {
 	
 	private int inativo;
 	
-	
-	@OneToMany( mappedBy = "compra", cascade = {CascadeType.MERGE, CascadeType.PERSIST, 
-			CascadeType.REMOVE})
+	//@OneToMany( mappedBy = "compra", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "compra")
 	private List<Produto> produtos;
 	
 	public Compra() {
 		
 	}
-
-	public Compra(Long id, LocalDate dataCompra, String supermercado, String telefone, Integer valorCompra, int inativo,
-			List<Produto> produtos) {
-		super();
-		this.id = id;
-		this.dataCompra = dataCompra;
-		this.supermercado = supermercado;
-		this.telefone = telefone;
-		this.valorCompra = valorCompra;
-		this.inativo = inativo;
-		this.produtos = produtos;
-	}
-
 
 	public Long getId() {
 		return id;

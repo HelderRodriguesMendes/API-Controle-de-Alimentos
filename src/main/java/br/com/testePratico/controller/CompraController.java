@@ -27,17 +27,16 @@ public class CompraController {
 	CompraService compraService;
 
 	private static final String API = "/compra";
-	
+
 	@PostMapping()
-	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException{		
+	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException {
 		Compra compra = compraService.salvar(compraDTO);
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
-	
+
 	@GetMapping("/pesquisarSupermercado")
-	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome){
+	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome) {
 		List<Compra> compras = compraService.buscarSupermercado(nome);
 		return ResponseEntity.ok().body(compras);
-}
-
+	}
 }

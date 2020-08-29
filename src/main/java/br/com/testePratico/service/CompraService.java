@@ -11,7 +11,6 @@ import br.com.testePratico.convercoesDTO.ProdutoMapper;
 import br.com.testePratico.model.Compra;
 import br.com.testePratico.model.Produto;
 import br.com.testePratico.modelDTO.CompraDTO;
-import br.com.testePratico.modelDTO.ProdutoDTO;
 import br.com.testePratico.repository.CompraRepository;
 
 @Service
@@ -36,8 +35,8 @@ public class CompraService {
 		Compra compraSalva = compraRepository.save(compra);
 		
 		for(Produto p : produtos) {
-			ProdutoDTO produtoDtoInvalidado = produtoMapper.toDTO(p);
-			produtoService.salvar(produtoDtoInvalidado, compraSalva);
+			p.setCompra(compraSalva);
+			produtoService.salvar(p);
 		}
 
 		return compraSalva;

@@ -1,9 +1,7 @@
 create table compra(
-	id bigint not null auto_increment unique,
-	DATACOMPRA date not null,
-    SUPERMERCADO varchar(40),
-    TELEFONE varchar(20),
-    VALORCOMPRA bigint,
-    inativo int,
-    primary key(id)
+	id bigint not null primary key auto_increment,
+    datacompra date not null,
+    inativo int not null,
+    supermercado varchar(30),
+    valorcompra int
 );

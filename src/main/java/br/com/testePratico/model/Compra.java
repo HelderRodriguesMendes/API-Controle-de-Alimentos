@@ -39,7 +39,6 @@ public class Compra implements Serializable {
 	
 	private int inativo;
 	
-	//@OneToMany( mappedBy = "compra", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference
 	@OneToMany(mappedBy = "compra")
 	private List<Produto> produtos;

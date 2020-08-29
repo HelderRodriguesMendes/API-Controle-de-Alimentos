@@ -1,7 +1,5 @@
 package br.com.testePratico.service;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class ProdutoService {
 	
 	ProdutoMapper produtoMapper = new ProdutoMapper();
 
-	public void salvar(@Valid ProdutoDTO produtoDTO, Compra compra) {
+	public void salvar(ProdutoDTO produtoDTO, Compra compra) {
 		System.out.println("COMPRA " + compra.getId());
 		Produto p = produtoMapper.toEntity(produtoDTO);
 		p.setCompra(compra);

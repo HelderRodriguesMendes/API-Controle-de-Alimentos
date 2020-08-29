@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -27,7 +28,7 @@ public class CompraDTO {
 	
 	private Integer valorCompra;
 	
-	
+	@Valid
 	private List<ProdutoDTO> produtosDTO = new ArrayList<>();
 	
 	
@@ -36,25 +37,6 @@ public class CompraDTO {
 	public CompraDTO() {
 		
 	}
-
-	
-	
-	public CompraDTO(Long id,
-			@NotNull(message = "Preenchimento obrigatório do campo DATA DA COMPRA") LocalDate dataCompra,
-			@Length(min = 4, max = 40, message = "O campo SUPERMERCADO deve conter entre 4 e 40 caracteres") @NotEmpty(message = "Preenchimento obrigatório do campo SUPERMECADO") String supermercado,
-			@Length(max = 20, message = "O campo TELEFONE deve conter no máximo 20 caracteres") String telefone,
-			Integer valorCompra, List<ProdutoDTO> produtosDTO, int inativo) {
-		super();
-		this.id = id;
-		this.dataCompra = dataCompra;
-		this.supermercado = supermercado;
-		this.telefone = telefone;
-		this.valorCompra = valorCompra;
-		this.produtosDTO = produtosDTO;
-		this.inativo = inativo;
-	}
-
-
 
 	public Long getId() {
 		return id;

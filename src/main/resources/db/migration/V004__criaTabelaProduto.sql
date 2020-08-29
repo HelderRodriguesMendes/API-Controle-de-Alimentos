@@ -1,11 +1,11 @@
 create table produto(
-	id bigint not null auto_increment unique,
-    TIPO varchar(40) not null,
-    NOME varchar(40) not null,
-    MARCA varchar(20) not null,
-    VALOR bigint not null,
-    DATAVALIDADE date not null,
-    STATUSCONSUMO bigint not null,
-    COMPRAID bigint,
-    primary key(id)
+	id bigint not null primary key auto_increment,
+    datavalidade date not null,
+    marca varchar(25) not null,
+    nome varchar(40) not null,
+    statusconsumo bigint not null,
+    tipo varchar(20) not null,
+    valor int not null,
+    compraid bigint,
+    FOREIGN KEY(compraid) REFERENCES compra(id)
 );

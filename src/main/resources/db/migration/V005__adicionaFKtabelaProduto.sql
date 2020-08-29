@@ -1,1 +1,0 @@
-alter table produto add constraint COMPRAID foreign key (id) references compra(id);

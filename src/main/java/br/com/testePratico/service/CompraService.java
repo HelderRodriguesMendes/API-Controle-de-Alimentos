@@ -30,7 +30,7 @@ public class CompraService {
 		
 		Compra compra = compraMapper.toEntity(compraDTO);
 		
-		List<Produto>produtos = compra.getProdutos();
+		List<Produto> produtos = compra.getProdutos();
 
 		Compra compraSalva = compraRepository.save(compra);
 		

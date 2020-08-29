@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.testePratico.Exception.RegistroNaoEncontradoException;
 import br.com.testePratico.convercoesDTO.CompraMapper;
 import br.com.testePratico.convercoesDTO.ProdutoMapper;
 import br.com.testePratico.model.Compra;
@@ -40,5 +41,14 @@ public class CompraService {
 		}
 
 		return compraSalva;
+	}
+	
+	public List<Compra> buscarSupermercado(String nome){
+		List<Compra> compras = compraRepository.findBySupermercado(nome);
+		
+		if(compras.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return compras;
 	}
 }

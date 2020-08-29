@@ -37,7 +37,7 @@ public class CompraService {
 		
 		for(Produto p : produtos) {
 			p.setCompra(compraSalva);
-			produtoService.salvar(p);
+			produtoService.salvar(produtoMapper.toDTO(p));
 		}
 
 		return compraSalva;

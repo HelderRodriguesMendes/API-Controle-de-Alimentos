@@ -1,5 +1,6 @@
 package br.com.testePratico.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,15 @@ public class CompraService {
 	
 	public List<Compra> buscarSupermercado(String nome){
 		List<Compra> compras = compraRepository.findBySupermercado(nome);
+		
+		if(compras.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return compras;
+	}
+	
+	public List<Compra> buscarDatacompra(LocalDate dataCompra){
+		List<Compra> compras = compraRepository.findByDatacompra(dataCompra);
 		
 		if(compras.isEmpty()) {
 			throw new RegistroNaoEncontradoException("Compra não encontrada");

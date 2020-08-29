@@ -2,6 +2,7 @@ package br.com.testePratico.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -37,6 +38,13 @@ public class CompraController {
 	@GetMapping("/pesquisarSupermercado")
 	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome) {
 		List<Compra> compras = compraService.buscarSupermercado(nome);
+		return ResponseEntity.ok().body(compras);
+	}
+	
+	@GetMapping("/pesquisarDatacompra")
+	public ResponseEntity<List<Compra>> buscarDatacompra(@RequestParam String dataC) {
+		LocalDate dataCompra = LocalDate.parse(dataC);
+		List<Compra> compras = compraService.buscarDatacompra(dataCompra);
 		return ResponseEntity.ok().body(compras);
 	}
 }

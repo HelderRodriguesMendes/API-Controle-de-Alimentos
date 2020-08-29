@@ -23,9 +23,6 @@ public class ProdutoService {
 		LocalDate DATA_ATUAL = LocalDate.now();
 		LocalDate dataFutura =  DATA_ATUAL.plusWeeks(2);
 		
-		System.out.println("DATA_ATUAL: " + DATA_ATUAL);
-		System.out.println("dataFutura: " + dataFutura);
-		
 		return produtoRepository.buscarDataValidade(DATA_ATUAL, dataFutura);
 	}
 }

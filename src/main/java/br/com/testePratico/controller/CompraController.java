@@ -10,7 +10,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,7 @@ public class CompraController {
 	@Autowired
 	CompraService compraService;
 
-	private static final String API = "/compra";
+	private static final String API = "alimentos/compra";
 
 	@PostMapping()
 	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException {
@@ -35,6 +37,12 @@ public class CompraController {
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
 
+	@GetMapping("/listaCompras")
+	public ResponseEntity<List<Compra>> buscarTodas() {
+		List<Compra> compras = compraService.buscarTodas();
+		return ResponseEntity.ok(compras);
+	}
+	
 	@GetMapping("/pesquisarSupermercado")
 	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome) {
 		List<Compra> compras = compraService.buscarSupermercado(nome);
@@ -46,6 +54,19 @@ public class CompraController {
 		LocalDate dataCompra = LocalDate.parse(dataC);
 		List<Compra> compras = compraService.buscarDatacompra(dataCompra);
 		return ResponseEntity.ok().body(compras);
+	}
+	
+	@PutMapping("/alterar/{id}")
+	public ResponseEntity<Compra> alterar(@Valid @RequestBody CompraDTO compraDTO, @PathVariable ("id") Long id)throws URISyntaxException{
+		compraDTO.setId(id);
+		Compra compra = compraService.salvar(compraDTO);
+		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
+	}
+	
+	@GetMapping("/desabilitarCompra/{id}")
+	public ResponseEntity<List<Compra>> desabilitar(@PathVariable ("id") Long id){
+		List<Compra> produtos = compraService.desabilitar(id);
+		return ResponseEntity.ok().body(produtos);
 	}
 	
 	//FALTA ALTERAR E DESABILITAR

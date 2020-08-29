@@ -51,6 +51,5 @@ public class ProdrutoController {
 		produtoDTO.setId(id);
 		Produto produto = produtoService.salvar(produtoDTO);
 		return ResponseEntity.created(new URI(API + produto.getId())).body(produto);
-
 	}
 }

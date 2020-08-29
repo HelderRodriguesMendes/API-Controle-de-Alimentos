@@ -19,23 +19,20 @@ public class CompraService {
 
 	@Autowired
 	CompraRepository compraRepository;
-	
+
 	@Autowired
 	ProdutoService produtoService;
-	
-	
+
 	CompraMapper compraMapper = new CompraMapper();
 	ProdutoMapper produtoMapper = new ProdutoMapper();
 
 	public Compra salvar(CompraDTO compraDTO) {
-		
-		Compra compra = compraMapper.toEntity(compraDTO);
-		
-		List<Produto> produtos = compra.getProdutos();
 
+		Compra compra = compraMapper.toEntity(compraDTO);
+
+		List<Produto> produtos = compra.getProdutos(); // SEPARA OS PRODUTOS PARA SALVAR UM A UM COM A FK
 		Compra compraSalva = compraRepository.save(compra);
-		
-		for(Produto p : produtos) {
+		for (Produto p : produtos) {
 			p.setCompra(compraSalva);
 			produtoService.salvar(produtoMapper.toDTO(p));
 		}
@@ -43,21 +40,36 @@ public class CompraService {
 		return compraSalva;
 	}
 	
-	public List<Compra> buscarSupermercado(String nome){
+	public List<Compra> buscarTodas(){
+		return compraRepository.comprasAtivas();
+	}
+
+	public List<Compra> buscarSupermercado(String nome) {
 		List<Compra> compras = compraRepository.findBySupermercado(nome);
-		
-		if(compras.isEmpty()) {
+
+		if (compras.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return compras;
+	}
+
+	public List<Compra> buscarDatacompra(LocalDate dataCompra) {
+		List<Compra> compras = compraRepository.findByDatacompra(dataCompra);
+
+		if (compras.isEmpty()) {
 			throw new RegistroNaoEncontradoException("Compra não encontrada");
 		}
 		return compras;
 	}
 	
-	public List<Compra> buscarDatacompra(LocalDate dataCompra){
-		List<Compra> compras = compraRepository.findByDatacompra(dataCompra);
-		
-		if(compras.isEmpty()) {
-			throw new RegistroNaoEncontradoException("Compra não encontrada");
+	public List<Compra> desabilitar(Long id){
+		Compra compra = compraRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException("Compra não encontrada"));
+		List<Produto> produtos = compra.getProdutos();
+		for(Produto p : produtos) {
+			produtoService.desabilitar(p.getId());
 		}
-		return compras;
+		compraRepository.desabilitarProduto(id);
+		
+		return buscarTodas();
 	}
 }

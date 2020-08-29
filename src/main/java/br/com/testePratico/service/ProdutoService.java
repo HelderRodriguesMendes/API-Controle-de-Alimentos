@@ -40,6 +40,4 @@ public class ProdutoService {
 		
 		return buscarProdudosDisponiveis();
 	}
-	
-	//FLATA ALTERA PRODUTOS
 }

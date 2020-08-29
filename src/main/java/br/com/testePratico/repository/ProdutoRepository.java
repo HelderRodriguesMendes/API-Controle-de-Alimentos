@@ -17,6 +17,15 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	@Transactional
 	@Query(value = "select * from produto where datavalidade between ?1 and ?2", nativeQuery = true)
 	List<Produto>  buscarDataValidade(LocalDate dataAtual, LocalDate dataFutura);
+	
+	@Transactional
+	@Query(value = "select * from produto where statusconsumo = '0'", nativeQuery = true)
+	List<Produto> findByStatusconsumo();
+	
+	@Transactional
+	@Modifying
+	@Query(value =  "update produto set statusconsumo = '1' where id =?1", nativeQuery = true)
+	void desabilitarProduto(Long id);
 }
 
 

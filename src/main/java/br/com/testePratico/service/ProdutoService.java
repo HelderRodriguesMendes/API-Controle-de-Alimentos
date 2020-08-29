@@ -25,4 +25,16 @@ public class ProdutoService {
 		
 		return produtoRepository.buscarDataValidade(DATA_ATUAL, dataFutura);
 	}
+	
+	public List<Produto> buscarProdudosDisponiveis(){
+		return produtoRepository.findByStatusconsumo();
+	}
+	
+	public List<Produto> desabilitar(Long id){
+		produtoRepository.desabilitarProduto(id);
+		
+		return buscarProdudosDisponiveis();
+	}
+	
+	//FLATA ALTERA PRODUTOS
 }

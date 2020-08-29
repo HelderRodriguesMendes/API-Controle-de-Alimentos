@@ -39,7 +39,7 @@ public class Compra implements Serializable {
 	
 	private int inativo;
 	
-	@JsonManagedReference
+	 @JsonManagedReference
 	@OneToMany(mappedBy = "compra")
 	private List<Produto> produtos;
 	

@@ -38,7 +38,7 @@ public class CompraController {
 	@GetMapping("/pesquisarSupermercado")
 	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome) {
 		List<Compra> compras = compraService.buscarSupermercado(nome);
-		return ResponseEntity.ok().body(compras);
+		return ResponseEntity.ok(compras);
 	}
 	
 	@GetMapping("/pesquisarDatacompra")
@@ -47,4 +47,6 @@ public class CompraController {
 		List<Compra> compras = compraService.buscarDatacompra(dataCompra);
 		return ResponseEntity.ok().body(compras);
 	}
+	
+	//FALTA ALTERAR E DESABILITAR
 }

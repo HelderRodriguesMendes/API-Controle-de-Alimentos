@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.testePratico.model.Usuario;
 import br.com.testePratico.service.UsuarioService;
 
 @RestController
@@ -19,13 +20,16 @@ public class UsuarioController {
 	UsuarioService usuarioService;
 	
 	@GetMapping()
-	public ResponseEntity<String> login(@RequestParam String login, @RequestParam String senha){
+	public ResponseEntity<Usuario> login(@RequestParam String login, @RequestParam String senha){
+		
+		Usuario usuario = new Usuario();
+		
 		if(!usuarioService.buscar(login, senha)) {
-			return ResponseEntity.notFound().build(); //ERRO 404
+			usuario.setLogin("Login ou senha incorretos");
+			return ResponseEntity.ok(usuario);
 		}else {
-			Optional<String> body = Optional.of("Acesso altorizado");
-			
-			return ResponseEntity.ok(body.get());
+			usuario.setLogin("Acesso altorizado");
+			return ResponseEntity.ok(usuario);
 		}
 		
 	}

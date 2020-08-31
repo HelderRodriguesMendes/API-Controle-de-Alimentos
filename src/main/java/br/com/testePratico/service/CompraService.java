@@ -26,25 +26,40 @@ public class CompraService {
 	CompraMapper compraMapper = new CompraMapper();
 	ProdutoMapper produtoMapper = new ProdutoMapper();
 
-	public Compra salvar(CompraDTO compraDTO) {
+	public Compra salvar(CompraDTO compraDTO, String status) { // SALVA E ALTERA COMPRA - E SALVA PRODUTOS
 
 		Compra compra = compraMapper.toEntity(compraDTO);
 
 		List<Produto> produtos = compra.getProdutos(); // SEPARA OS PRODUTOS PARA SALVAR UM A UM COM A FK
 		Compra compraSalva = compraRepository.save(compra);
-		for (Produto p : produtos) {
-			p.setCompra(compraSalva);
-			produtoService.salvar(produtoMapper.toDTO(p));
+
+		if (status.equals("salvar")) {
+			for (Produto p : produtos) {
+				p.setCompra(compraSalva);
+				produtoService.salvar(produtoMapper.toDTO(p));
+			}
 		}
 
 		return compraSalva;
 	}
-	
-	public List<Compra> buscarTodas(){
-		return compraRepository.comprasAtivas();
+
+	public List<Compra> buscarCompra(Long id) { // BUSCA POR ID DE TODAS AS COMPRAS DISPONIVEIS
+		List<Compra> compras = compraRepository.buscarCompra(id);
+		if (compras.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return compras;
 	}
 
-	public List<Compra> buscarSupermercado(String nome) {
+	public List<Compra> buscarTodas() { // BUSCA TODAS AS COMPRAS DISPONIVEIS
+		List<Compra> compras = compraRepository.comprasAtivas();
+		if (compras.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return compras;
+	}
+
+	public List<Compra> buscarSupermercado(String nome) { // BUSCA POR SUPERMERCADO DE TODAS AS COMPRAS DISPONIVEIS
 		List<Compra> compras = compraRepository.findBySupermercado(nome);
 
 		if (compras.isEmpty()) {
@@ -53,7 +68,8 @@ public class CompraService {
 		return compras;
 	}
 
-	public List<Compra> buscarDatacompra(LocalDate dataCompra) {
+	public List<Compra> buscarDatacompra(LocalDate dataCompra) { // BUSCA POR DATA DA COMPRA DE TODAS AS COMPRAS
+																	// DISPONIVEIS
 		List<Compra> compras = compraRepository.findByDatacompra(dataCompra);
 
 		if (compras.isEmpty()) {
@@ -61,15 +77,16 @@ public class CompraService {
 		}
 		return compras;
 	}
-	
-	public List<Compra> desabilitar(Long id){
-		Compra compra = compraRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException("Compra não encontrada"));
+
+	public List<Compra> desabilitar(Long id) { // DESABILITA COMPRA
+		Compra compra = compraRepository.findById(id)
+				.orElseThrow(() -> new RegistroNaoEncontradoException("Compra não encontrada"));
 		List<Produto> produtos = compra.getProdutos();
-		for(Produto p : produtos) {
+		for (Produto p : produtos) {
 			produtoService.desabilitar(p.getId());
 		}
 		compraRepository.desabilitarProduto(id);
-		
+
 		return buscarTodas();
 	}
 }

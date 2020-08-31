@@ -15,15 +15,19 @@ import br.com.testePratico.model.Compra;
 public interface CompraRepository extends JpaRepository<Compra, Long> {
 	
 	@Transactional
-	@Query(value = "SELECT DISTINCT  * from compra, produto where supermercado = ?1 and produto.compraid = compra.id", nativeQuery = true)
+	@Query(value = "SELECT * from compra where inativo = 0 and supermercado = ?1", nativeQuery = true)
 	List<Compra> findBySupermercado(String nome);
 	
 	@Transactional
-	@Query(value = "SELECT DISTINCT  * from compra, produto where datacompra = ?1 and produto.compraid = compra.id", nativeQuery = true)
+	@Query(value = "SELECT * from compra where inativo = 0 and datacompra = ?1", nativeQuery = true)
 	List<Compra> findByDatacompra(LocalDate datacompra);
 	
 	@Transactional
-	@Query(value = "SELECT * from compra, produto where  statusconsumo = '0' and produto.compraid = compra.id", nativeQuery = true)
+	@Query(value = "SELECT * from compra where inativo = 0 and id = ?1", nativeQuery = true)
+	List<Compra> buscarCompra(Long id);
+	
+	@Transactional
+	@Query(value = "SELECT * from compra where inativo = 0", nativeQuery = true)
 	List<Compra> comprasAtivas();
 	
 	@Transactional

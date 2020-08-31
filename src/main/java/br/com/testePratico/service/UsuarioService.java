@@ -18,13 +18,12 @@ public class UsuarioService {
 	UsuarioMapper uruairoMapper = new UsuarioMapper();
 	
 	public boolean buscar(String login, String senha) {
-		Long id = (long) 1;
+		final Long id = (long) 1;
 		Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontradoException("Usuário não encontrado"));
 		
 		boolean ok = true;
 		
-		if(!usuario.getLogin().equals(login) && !usuario.getSenha().equals(senha)) {
-				
+		if(!usuario.getLogin().equals(login) && !usuario.getSenha().equals(senha)) {	
 			ok = false;
 		}
 		

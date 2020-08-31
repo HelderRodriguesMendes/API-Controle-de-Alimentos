@@ -42,7 +42,7 @@ public class Produto implements Serializable {
 	@Column(name = "STATUSCONSUMO", nullable = false)
 	private Long statusConsumo;
 	
-	@JsonBackReference
+	 @JsonBackReference
 	@ManyToOne()
 	@JoinColumn(name = "COMPRAID")
 	private Compra compra;

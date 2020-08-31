@@ -19,23 +19,27 @@ public class ProdutoService {
 	
 	ProdutoMapper produtoMapper = new ProdutoMapper();
 
-	public Produto salvar(ProdutoDTO produtoDTO) {
+	public Produto salvar(ProdutoDTO produtoDTO) { //ALTERA UM PRODUTO
 		Produto produto = produtoMapper.toEntity(produtoDTO);
 		return produto = produtoRepository.save(produto);
 	}
 	
-	public List<Produto> verificarValidade(){
+	public List<Produto> verificarValidade(){ //VERIFICA SE TEM ALGUM RPODUTO PERTO DE VENCER
 		LocalDate DATA_ATUAL = LocalDate.now();
 		LocalDate dataFutura =  DATA_ATUAL.plusWeeks(2);
 		
 		return produtoRepository.buscarDataValidade(DATA_ATUAL, dataFutura);
 	}
 	
-	public List<Produto> buscarProdudosDisponiveis(){
+	public List<Produto> buscarProdudosDisponiveis(){ //BUSCA TODOS OS PRODUTOS DISPONIVEIS NA GELADEIRA
 		return produtoRepository.findByStatusconsumo();
 	}
 	
-	public List<Produto> desabilitar(Long id){
+	public List<Produto> buscarCompraid(Long id){ // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
+		return produtoRepository.findByCompraid(id);
+	}
+	
+	public List<Produto> desabilitar(Long id){ //DESABILITA UM PRODUTO
 		produtoRepository.desabilitarProduto(id);
 		
 		return buscarProdudosDisponiveis();

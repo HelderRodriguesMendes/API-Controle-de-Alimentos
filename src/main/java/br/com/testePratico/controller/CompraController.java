@@ -31,43 +31,54 @@ public class CompraController {
 
 	private static final String API = "alimentos/compra";
 
-	@PostMapping()
+	@PostMapping() //SALVA A COMPRA E OS PRODUTOS
 	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException {
-		Compra compra = compraService.salvar(compraDTO);
+		System.out.println("SUPERMER: " + compraDTO.getSupermercado());
+		Compra compra = compraService.salvar(compraDTO, "salvar");
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
 
-	@GetMapping("/listaCompras")
+	
+	@GetMapping("/listaCompras") //BUSCA TODAS AS COMPRAS DISPONIVEIS
 	public ResponseEntity<List<Compra>> buscarTodas() {
 		List<Compra> compras = compraService.buscarTodas();
 		return ResponseEntity.ok(compras);
 	}
 	
-	@GetMapping("/pesquisarSupermercado")
+	
+	@GetMapping("/buscarCompra/{id}") //BUSCA POR ID DE TODAS AS COMPRAS DISPONIVEIS
+	public ResponseEntity<List<Compra>> buscarCompra(@PathVariable ("id") Long id) {
+		List<Compra> compras = compraService.buscarCompra(id);
+		return ResponseEntity.ok(compras);
+	}
+	
+	
+	@GetMapping("/pesquisarSupermercado") //BUSCA POR SUPERMERCADO DE TODAS AS COMPRAS DISPONIVEIS
 	public ResponseEntity<List<Compra>> buscarSupermercado(@RequestParam String nome) {
 		List<Compra> compras = compraService.buscarSupermercado(nome);
 		return ResponseEntity.ok(compras);
 	}
 	
-	@GetMapping("/pesquisarDatacompra")
+	
+	@GetMapping("/pesquisarDatacompra") //BUSCA POR DATA DA COMPRA DE TODAS AS COMPRAS DISPONIVEIS
 	public ResponseEntity<List<Compra>> buscarDatacompra(@RequestParam String dataC) {
 		LocalDate dataCompra = LocalDate.parse(dataC);
 		List<Compra> compras = compraService.buscarDatacompra(dataCompra);
 		return ResponseEntity.ok().body(compras);
 	}
 	
-	@PutMapping("/alterar/{id}")
+	
+	@PutMapping("/alterar/{id}") //ALTERA UMA COMPRA
 	public ResponseEntity<Compra> alterar(@Valid @RequestBody CompraDTO compraDTO, @PathVariable ("id") Long id)throws URISyntaxException{
 		compraDTO.setId(id);
-		Compra compra = compraService.salvar(compraDTO);
+		Compra compra = compraService.salvar(compraDTO, "alterar");
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
 	
-	@GetMapping("/desabilitarCompra/{id}")
+	
+	@GetMapping("/desabilitarCompra/{id}") //DESABILITA COMPRA
 	public ResponseEntity<List<Compra>> desabilitar(@PathVariable ("id") Long id){
 		List<Compra> produtos = compraService.desabilitar(id);
 		return ResponseEntity.ok().body(produtos);
 	}
-	
-	//FALTA ALTERAR E DESABILITAR
 }

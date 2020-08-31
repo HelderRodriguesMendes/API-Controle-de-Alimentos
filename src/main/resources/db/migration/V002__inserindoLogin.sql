@@ -1,1 +1,1 @@
-insert into usuario (login, senha) values ('atentatecnologia', 'admin');
+insert into usuario (login, senha) values ('atentatecnologia', '123');

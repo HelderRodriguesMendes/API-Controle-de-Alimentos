@@ -11,6 +11,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(of = { "id" })
 public class CompraDTO {
 
 	private Long id;
@@ -36,86 +41,5 @@ public class CompraDTO {
 	
 	public CompraDTO() {
 		
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDate getDataCompra() {
-		return dataCompra;
-	}
-
-	public void setDataCompra(LocalDate dataCompra) {
-		this.dataCompra = dataCompra;
-	}
-
-	public String getSupermercado() {
-		return supermercado;
-	}
-
-	public void setSupermercado(String supermercado) {
-		this.supermercado = supermercado;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public Integer getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(Integer valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
-	public List<ProdutoDTO> getProdutosDTO() {
-		return produtosDTO;
-	}
-
-	public void setProdutosDTO(List<ProdutoDTO> produtosDTO) {
-		this.produtosDTO = produtosDTO;
-	}
-
-	public int getInativo() {
-		return inativo;
-	}
-
-	public void setInativo(int inativo) {
-		this.inativo = inativo;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CompraDTO other = (CompraDTO) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
 	}
 }

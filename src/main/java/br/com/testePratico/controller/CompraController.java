@@ -33,7 +33,6 @@ public class CompraController {
 
 	@PostMapping() //SALVA A COMPRA E OS PRODUTOS
 	public ResponseEntity<Compra> salvar(@Valid @RequestBody CompraDTO compraDTO) throws URISyntaxException {
-		System.out.println("SUPERMER: " + compraDTO.getSupermercado());
 		Compra compra = compraService.salvar(compraDTO, "salvar");
 		return ResponseEntity.created(new URI(API + compra.getId())).body(compra);
 	}
@@ -42,13 +41,6 @@ public class CompraController {
 	@GetMapping("/listaCompras") //BUSCA TODAS AS COMPRAS DISPONIVEIS
 	public ResponseEntity<List<Compra>> buscarTodas() {
 		List<Compra> compras = compraService.buscarTodas();
-		return ResponseEntity.ok(compras);
-	}
-	
-	
-	@GetMapping("/buscarCompra/{id}") //BUSCA POR ID DE TODAS AS COMPRAS DISPONIVEIS
-	public ResponseEntity<List<Compra>> buscarCompra(@PathVariable ("id") Long id) {
-		List<Compra> compras = compraService.buscarCompra(id);
 		return ResponseEntity.ok(compras);
 	}
 	

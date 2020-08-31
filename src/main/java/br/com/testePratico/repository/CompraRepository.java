@@ -23,10 +23,6 @@ public interface CompraRepository extends JpaRepository<Compra, Long> {
 	List<Compra> findByDatacompra(LocalDate datacompra);
 	
 	@Transactional
-	@Query(value = "SELECT * from compra where inativo = 0 and id = ?1", nativeQuery = true)
-	List<Compra> buscarCompra(Long id);
-	
-	@Transactional
 	@Query(value = "SELECT * from compra where inativo = 0", nativeQuery = true)
 	List<Compra> comprasAtivas();
 	

@@ -9,7 +9,11 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.testePratico.model.Compra;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@EqualsAndHashCode(of = { "id" })
 public class ProdutoDTO {
 
 	private Long id;
@@ -40,94 +44,5 @@ public class ProdutoDTO {
 	
 	public ProdutoDTO() {
 		
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public Integer getValor() {
-		return valor;
-	}
-
-	public void setValor(Integer valor) {
-		this.valor = valor;
-	}
-
-	public LocalDate getDataValidade() {
-		return dataValidade;
-	}
-
-	public void setDataValidade(LocalDate dataValidade) {
-		this.dataValidade = dataValidade;
-	}
-
-	public int getStatusConsumo() {
-		return statusConsumo;
-	}
-
-	public void setStatusConsumo(int statusConsumo) {
-		this.statusConsumo = statusConsumo;
-	}
-
-	public Compra getCompra() {
-		return compra;
-	}
-
-	public void setCompra(Compra compra) {
-		this.compra = compra;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProdutoDTO other = (ProdutoDTO) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
 	}
 }

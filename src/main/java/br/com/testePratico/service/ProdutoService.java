@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.testePratico.Exception.RegistroNaoEncontradoException;
 import br.com.testePratico.convercoesDTO.ProdutoMapper;
 import br.com.testePratico.model.Produto;
 import br.com.testePratico.modelDTO.ProdutoDTO;
@@ -36,7 +37,11 @@ public class ProdutoService {
 	}
 	
 	public List<Produto> buscarCompraid(Long id){ // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
-		return produtoRepository.findByCompraid(id);
+		List<Produto> produtos = produtoRepository.findByCompraid(id);
+		if (produtos.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return produtos;
 	}
 	
 	public List<Produto> desabilitar(Long id){ //DESABILITA UM PRODUTO

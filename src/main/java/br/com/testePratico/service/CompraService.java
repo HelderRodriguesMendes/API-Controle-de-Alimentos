@@ -43,14 +43,7 @@ public class CompraService {
 		return compraSalva;
 	}
 
-	public List<Compra> buscarCompra(Long id) { // BUSCA POR ID DE TODAS AS COMPRAS DISPONIVEIS
-		List<Compra> compras = compraRepository.buscarCompra(id);
-		if (compras.isEmpty()) {
-			throw new RegistroNaoEncontradoException("Compra não encontrada");
-		}
-		return compras;
-	}
-
+	
 	public List<Compra> buscarTodas() { // BUSCA TODAS AS COMPRAS DISPONIVEIS
 		List<Compra> compras = compraRepository.comprasAtivas();
 		if (compras.isEmpty()) {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.testePratico.model.Produto;
@@ -45,6 +46,12 @@ public class ProdrutoController {
 	@GetMapping("/buscarCompra/{id}") // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
 	public ResponseEntity<List<Produto>> buscarCompraid(@PathVariable ("id") Long id) {
 		List<Produto> produtos = produtoService.buscarCompraid(id);
+		return ResponseEntity.ok().body(produtos);
+	}
+	
+	@GetMapping("/buscarProduto") // BUSCA UM PROTUDO POR NOME
+	public ResponseEntity<List<Produto>> buscarCompraNome(@RequestParam String nome) {
+		List<Produto> produtos = produtoService.buscarCompraNome(nome);
 		return ResponseEntity.ok().body(produtos);
 	}
 	

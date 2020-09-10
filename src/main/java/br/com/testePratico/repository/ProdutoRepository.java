@@ -27,6 +27,10 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	List<Produto> findByCompraid(Long id);
 	
 	@Transactional
+	@Query(value = "select * from produto where statusconsumo = '0' and nome like %?1%", nativeQuery = true)
+	List<Produto> findByNome(String nome);
+	
+	@Transactional
 	@Modifying
 	@Query(value =  "update produto set statusconsumo = '1' where id =?1", nativeQuery = true)
 	void desabilitarProduto(Long id);

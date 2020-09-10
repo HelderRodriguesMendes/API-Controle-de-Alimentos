@@ -20,6 +20,8 @@ public class UsuarioController {
 	@GetMapping()
 	public ResponseEntity<Usuario> login(@RequestParam String login, @RequestParam String senha){
 		
+		System.out.println("VEIO");
+		
 		Usuario usuario = new Usuario();
 		
 		if(!usuarioService.buscar(login, senha)) {

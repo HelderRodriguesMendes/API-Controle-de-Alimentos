@@ -44,6 +44,14 @@ public class ProdutoService {
 		return produtos;
 	}
 	
+	public List<Produto> buscarCompraNome(String nome){ // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
+		List<Produto> produtos = produtoRepository.findByNome(nome);
+		if (produtos.isEmpty()) {
+			throw new RegistroNaoEncontradoException("Compra não encontrada");
+		}
+		return produtos;
+	}
+	
 	public List<Produto> desabilitar(Long id){ //DESABILITA UM PRODUTO
 		produtoRepository.desabilitarProduto(id);
 		

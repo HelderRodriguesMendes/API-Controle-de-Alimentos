@@ -1,6 +1,7 @@
 package br.com.testePratico.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,10 @@ public class ProdutoService {
 		return produtos;
 	}
 	
-	public List<Produto> buscarCompraNome(String nome){ // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
+	public List<Produto> buscarProdutoNome(String nome){ // BUSCA TODOS OS PRODUTOS ATIVOS DE UMA COMPRA
 		List<Produto> produtos = produtoRepository.findByNome(nome);
 		if (produtos.isEmpty()) {
-			throw new RegistroNaoEncontradoException("Compra não encontrada");
+			produtos = new ArrayList<>();
 		}
 		return produtos;
 	}

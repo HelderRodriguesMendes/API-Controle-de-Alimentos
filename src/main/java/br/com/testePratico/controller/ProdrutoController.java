@@ -52,11 +52,6 @@ public class ProdrutoController {
 	@GetMapping("/buscarProduto") // BUSCA UM PROTUDO POR NOME
 	public ResponseEntity<List<Produto>> buscarProdutoNome(@RequestParam String nome) {
 		List<Produto> produtos = produtoService.buscarProdutoNome(nome);
-		
-		if(produtos.isEmpty()) {
-			System.out.println("LISTA VAZIA");
-		}
-		
 		return ResponseEntity.ok().body(produtos);
 	}
 	

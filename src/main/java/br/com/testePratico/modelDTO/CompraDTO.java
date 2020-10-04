@@ -1,5 +1,6 @@
 package br.com.testePratico.modelDTO;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CompraDTO {
 	@Length(max = 20, message = "O campo TELEFONE deve conter no máximo 20 caracteres")
 	private String telefone;
 	
-	private Integer valorCompra;
+	private Double valorCompra;
 	
 	@Valid
 	private List<ProdutoDTO> produtosDTO = new ArrayList<>();

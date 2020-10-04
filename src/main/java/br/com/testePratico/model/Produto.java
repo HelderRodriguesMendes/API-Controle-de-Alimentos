@@ -39,7 +39,7 @@ public class Produto implements Serializable {
 	private String marca;
 	
 	@Column(name = "VALOR", nullable = false)
-	private Integer valor;
+	private Double valor;
 	
 	@Column(name = "DATAVALIDADE", nullable = false)
 	private LocalDate dataValidade;

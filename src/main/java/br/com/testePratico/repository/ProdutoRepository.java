@@ -19,7 +19,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	List<Produto>  buscarDataValidade(LocalDate dataAtual, LocalDate dataFutura);
 	
 	@Transactional
-	@Query(value = "select * from produto where statusconsumo = '0'", nativeQuery = true)
+	@Query(value = "select * from produto where statusconsumo = '0' limit 100", nativeQuery = true)
 	List<Produto> findByStatusconsumo();
 	
 	@Transactional

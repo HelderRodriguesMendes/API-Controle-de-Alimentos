@@ -5,7 +5,7 @@ create table produto(
     nome varchar(40) not null,
     statusconsumo bigint not null,
     tipo varchar(20) not null,
-    valor int not null,
+    valor double not null,
     compraid bigint,
     FOREIGN KEY(compraid) REFERENCES compra(id)
 );

@@ -3,5 +3,5 @@ create table compra(
     datacompra date not null,
     inativo int not null,
     supermercado varchar(30),
-    valorcompra int
+    valorcompra double
 );

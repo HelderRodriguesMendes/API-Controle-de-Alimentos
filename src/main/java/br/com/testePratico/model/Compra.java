@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,11 +40,11 @@ public class Compra implements Serializable {
 	private String telefone;
 
 	@Column(name = "VALORCOMPRA")
-	private Integer valorCompra;
+	private Double valorCompra;
 
 	private int inativo;
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "compra")
 	private List<Produto> produtos;
 

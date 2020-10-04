@@ -31,7 +31,7 @@ public class ProdutoDTO {
 	private String marca;
 
 	@NotNull(message = "Preenchimento obrigatório do campo VALOR")
-	private Integer valor;
+	private Double valor;
 
 	@NotNull(message = "Preenchimento obrigatório do campo DATA DE VALIDADE")
 	@DateTimeFormat

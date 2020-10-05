@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,12 @@ public class ProdrutoController {
 	ProdutoService produtoService;
 	
 	private static final String API = "/produto";
+	
+	@PostMapping()
+	public ResponseEntity<Produto> salvar(@Valid @RequestBody ProdutoDTO produtoDTO) throws URISyntaxException{
+		Produto produto = produtoService.salvar(produtoDTO);
+		return ResponseEntity.created(new URI(API + produto.getId())).body(produto);
+	}
 	
 	@GetMapping("/verificarValidade")
 	public List<Produto> verificarValidade() { //VERIFICA SE TEM ALGUM RPODUTO PERTO DE VENCER
